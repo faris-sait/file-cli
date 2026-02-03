@@ -14,7 +14,7 @@ export interface GitStatus {
 export class GitService {
   private git: SimpleGit;
 
-  constructor(private rootPath: string) {
+  constructor(rootPath: string) {
     this.git = simpleGit(rootPath);
   }
 

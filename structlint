@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Wrapper script for structlint
+# This allows you to run structlint from anywhere without global installation
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+node "${SCRIPT_DIR}/dist/cli/index.js" "$@"

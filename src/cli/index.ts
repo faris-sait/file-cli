@@ -3,6 +3,7 @@
 import { Command } from 'commander';
 import { analyzeCommand } from './commands/analyze.js';
 import { checkGitCommand } from './commands/check-git.js';
+import { fixCommand } from './commands/fix.js';
 
 const program = new Command();
 
@@ -19,6 +20,13 @@ program
   .option('-o, --output <format>', 'Output format (text|json)', 'text')
   .option('-v, --verbose', 'Show detailed analysis information')
   .action(analyzeCommand);
+
+program
+  .command('fix')
+  .description('Interactively fix detected issues')
+  .argument('[path]', 'Path to project root', '.')
+  .option('--all', 'Apply all fixes without prompting')
+  .action(fixCommand);
 
 program
   .command('check-git')

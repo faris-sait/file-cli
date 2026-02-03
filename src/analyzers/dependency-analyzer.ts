@@ -14,7 +14,7 @@ export interface DependencyGraph {
 }
 
 export class DependencyAnalyzer {
-  constructor(private rootPath: string) {}
+  constructor(private rootPath: string) { }
 
   /**
    * Build a dependency graph for the project
@@ -23,7 +23,15 @@ export class DependencyAnalyzer {
     try {
       const result = await madge(this.rootPath, {
         fileExtensions: ['ts', 'js', 'tsx', 'jsx'],
-        excludeRegExp: [/node_modules/, /\.test\./, /\.spec\./],
+        excludeRegExp: [
+          /node_modules/,
+          /\.test\./,
+          /\.spec\./,
+          /dist/,
+          /build/,
+          /coverage/,
+          /\.d\.ts$/,
+        ],
       });
 
       const rawDeps = result.obj();
@@ -32,7 +40,7 @@ export class DependencyAnalyzer {
 
       // Build dependencies map
       for (const [file, deps] of Object.entries(rawDeps)) {
-        dependencies.set(file, deps);
+        dependencies.set(file, deps as string[]);
       }
 
       // Build dependents map (reverse lookup)

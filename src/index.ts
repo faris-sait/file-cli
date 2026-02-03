@@ -10,3 +10,4 @@ export * from './analyzers/index.js';
 export * from './rules/index.js';
 export * from './git/index.js';
 export * from './utils/index.js';
+export * from './actions/index.js';
